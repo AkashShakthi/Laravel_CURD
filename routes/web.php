@@ -26,6 +26,5 @@ Route::prefix('/product')->group(function(){
     Route::get('/{task_id}/editStatus',[ProductController::class,'editStatus'])->name('product.editStatus');
 
     Route::get('/{task_id}/edit',[ProductController::class,'edit'])->name('product.edit');
-    Route::get('/{task_id}/selectData',[ProductController::class,'selectData'])->name('product.selectData');
 
 });
