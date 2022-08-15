@@ -18,6 +18,11 @@ class ProductService
         return $this->task->all();
     }
 
+    public function allActive()
+    {
+        return $this->task->allActive();
+    }
+    
     public function store($data)
     {
         if(isset($data['image'])){
@@ -38,24 +43,16 @@ class ProductService
     {
 
         $task = $this->task->find($task_id);
-        if($task->status == 1){
-            $task->status = 0;
-            $task->update();
-        }else if($task->status == 0){
+        if($task->status == 0){
             $task->status = 1;
             $task->update();
+        }else{
+            $task->status = 0;
+            $task->update();
         }
-    }
 
-    public function edit($task_id)
-    {
-
-        $task = $this->task->find($task_id);
-        $task->update();
 
     }
-
-
 
 }
 

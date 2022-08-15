@@ -8,52 +8,37 @@
             <h1 class="page-title">Product List</h1>
         </div>
 
-        <div class="col-lg-12" >
+        <div class="col-lg-12 " >
             <form role="form" action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="row mb-2 " >
-                    <div class="col-lg-8">
+                <div class="row mb-2 justify-content-center" >
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <input class="form-control" type="text" name='name' placeholder="Name" value="">
                         </div>
                     </div>
                 </div>
-                <div class="row mb-2 " >
-                    <div class="col-lg-8">
+                <div class="row mb-2 justify-content-center " >
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <input class="form-control" type="file" name='image' accept="image/jpg, image/jpeg, image/png">
                         </div>
                     </div>
                 </div>
-                <div class="row mb-2 " >
-                    <div class="col-lg-8">
+                <div class="row mb-2 justify-content-center " >
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <input class="form-control" type="text" name='price' placeholder="price">
                         </div>
                     </div>
                 </div>
 
-                <div class="row mb-2 " >
-                    <div class="col-lg-1">
-                        <label class="form-check-label" >Status</label>
-                    </div>
-                    <div class="col-lg-1">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="1">
-                            <label class="form-check-label" for="exampleRadios2">Actvie</label>
-                      </div>
-                    </div>
-                    <div class="col-lg-1">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="0">
-                            <label class="form-check-label" for="exampleRadios2">Inactive</label>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row mb-2 " >
-                    <div class="col-lg-4">
+                <div class="row mb-5 justify-content-center " >
+                    <div class="col-lg-5"> </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
                         <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
                     </div>
                 </div>
         </form>
@@ -63,12 +48,11 @@
             <table class="table table-striped table-dark">
                 <thead>
                   <tr>
-                    <th scope="col">id</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Image</th>
                     <th scope="col">Price</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Change/Status</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -77,24 +61,27 @@
                       <tr>
                         <th scope="row">{{ $task->id }}</th>
                         <td>{{ $task->name }}</td>
-                        <td>{{ $task->image_id }}</td>
+                        <td><img src="{{ config('images.access_path')}}/{{ $task->images->name }}" alt="" width="100px"></td>
                         <td>{{ $task->price }}</td>
                         <td>
-                                @if ($task->status == '1')
-                                    <span class="badge bg-success">Active</span>
-                                @elseif ($task->status == '0')
+                                @if ($task->status == 0)
                                     <span class="badge bg-warning">Inactive</span>
+                                @else
+                                    <span class="badge bg-success">Active</span>
                                 @endif
                         </td>
-                        <td>
 
-                              <div class="col-lg-1">
-                                <a href="{{ route('product.editStatus',$task->id)  }}" > <button type="button" class="btn btn-primary">changeStatus</button></a>
-                            </div>
-                        </td>
                         <td >
                             <a href="{{ route('product.delete',$task->id) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-                            <a href="{{ route('product.edit',$task->id)  }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                            @if ($task->status == 0)
+                            <a href="{{ route('product.editStatus',$task->id)  }}" class="btn btn-primary"><i class="fa-solid fa-check-circle"></i>Active</a>
+
+                            @else
+                            <a href="{{ route('product.editStatus',$task->id)  }}" class="btn btn-warning"><i class="fa-solid fa-check-circle"></i>Inactive</a>
+                            @endif
+
+                            <a href="{{ route('product.delete',$task->id)  }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                         </td>
                       </tr>
                     @endforeach
@@ -107,9 +94,9 @@
 @push('css')
 <style>
     .page-title{
-        padding-top:15vh;
+        padding-top:5vh;
         font-size: 5rem;
-        color:rgb(6, 214, 6);
+        color:#5471C6;
     }
 </style>
 

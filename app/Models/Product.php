@@ -15,4 +15,12 @@ class Product extends Model
         'price',
         'status'
     ];
+
+    public function images(){
+        return $this->hasOne(Image::class, 'id', 'image_id');
+    }
+
+    public function allActive(){
+        return $this->where('status',1)->get();
+    }
 }
