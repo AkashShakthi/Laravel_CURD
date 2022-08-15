@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +14,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Home
+Route::get('/',[DashboardController::class,'index'])->name('Dashboard');
 
-Route::get('/', function () {
-    return view('welcome');
+//Product
+Route::prefix('/product')->group(function(){
+
+    Route::get('/',[ProductController::class,'index'])->name('product');
+    Route::post('/store',[ProductController::class,'store'])->name('product.store');
+    Route::get('/{task_id}/delete',[ProductController::class,'delete'])->name('product.delete');
+    Route::get('/{task_id}/editStatus',[ProductController::class,'editStatus'])->name('product.editStatus');
+
 });
