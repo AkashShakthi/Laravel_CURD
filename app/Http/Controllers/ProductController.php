@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductController extends ParentController
 {
     protected $stack;
 
@@ -37,13 +37,7 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function edit($task_id)
-    {
-        //dd($request);
-        $task = $this->task->find($task_id);
-        $task->update();
-        return redirect()->back();
-    }
+
     public function editStatus($task_id)
     {
         //dd($request);
@@ -58,4 +52,21 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
+    public function edit($task_id)
+    {
+        //dd($request);
+        $task = $this->task->find($task_id);
+        $task->update();
+        return redirect()->back();
+    }
+
+    public function  selectData($task_id)
+    {
+        //dd($request);
+        $task = $this->task->find($task_id);
+        $task->update();
+        return redirect()->back();
+    }
+
 }
