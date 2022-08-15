@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-lg-12" >
-            <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+            <form role="form" action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-2 " >
                     <div class="col-lg-8">
@@ -21,7 +21,7 @@
                 <div class="row mb-2 " >
                     <div class="col-lg-8">
                         <div class="form-group">
-                            <input class="form-control" type="text" name='image' placeholder="image">
+                            <input class="form-control" type="file" name='image' accept="image/jpg, image/jpeg, image/png">
                         </div>
                     </div>
                 </div>
@@ -39,13 +39,13 @@
                     </div>
                     <div class="col-lg-1">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="active">
+                            <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="1">
                             <label class="form-check-label" for="exampleRadios2">Actvie</label>
                       </div>
                     </div>
                     <div class="col-lg-1">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="inactive">
+                            <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="0">
                             <label class="form-check-label" for="exampleRadios2">Inactive</label>
                         </div>
 
@@ -77,12 +77,12 @@
                       <tr>
                         <th scope="row">{{ $task->id }}</th>
                         <td>{{ $task->name }}</td>
-                        <td>{{ $task->image }}</td>
+                        <td>{{ $task->image_id }}</td>
                         <td>{{ $task->price }}</td>
                         <td>
-                                @if ($task->status == 'active')
+                                @if ($task->status == '1')
                                     <span class="badge bg-success">Active</span>
-                                @elseif ($task->status == 'inactive')
+                                @elseif ($task->status == '0')
                                     <span class="badge bg-warning">Inactive</span>
                                 @endif
                         </td>

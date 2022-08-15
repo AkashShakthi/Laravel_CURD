@@ -2,6 +2,7 @@
 
 namespace domain\Services;
 use App\Models\Product;
+use infrastructure\Facades\ImagesFacade;
 class ProductService
 {
     protected $task;
@@ -19,6 +20,10 @@ class ProductService
 
     public function store($data)
     {
+        if(isset($data['image'])){
+            $image = ImagesFacade::store($data['image'],[1,2,3,4,5]);
+            $data['image_id'] = $image['created_images']->id;
+        }
         $this->task->create($data);
     }
 
@@ -33,11 +38,11 @@ class ProductService
     {
 
         $task = $this->task->find($task_id);
-        if($task->status == "active"){
-            $task->status = "inactive";
+        if($task->status == 1){
+            $task->status = 0;
             $task->update();
-        }else if($task->status == "inactive"){
-            $task->status = "active";
+        }else if($task->status == 0){
+            $task->status = 1;
             $task->update();
         }
     }

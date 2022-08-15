@@ -28,3 +28,16 @@ Route::prefix('/product')->group(function(){
     Route::get('/{task_id}/edit',[ProductController::class,'edit'])->name('product.edit');
 
 });
+
+
+//banner
+Route::prefix('/banner')->group(function(){
+
+    Route::get('/',[ProductController::class,'index'])->name('banner');
+    Route::post('/store',[ProductController::class,'store'])->name('banner.store');
+    Route::get('/{banner_id}/delete',[ProductController::class,'delete'])->name('banner.delete');
+    Route::get('/{banner_id}/editStatus',[ProductController::class,'editStatus'])->name('banner.editStatus');
+
+    Route::get('/{banner_id}/edit',[ProductController::class,'edit'])->name('banner.edit');
+
+});
