@@ -37,7 +37,13 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-
+    public function edit($task_id)
+    {
+        //dd($request);
+        $task = $this->task->find($task_id);
+        $task->update();
+        return redirect()->back();
+    }
     public function editStatus($task_id)
     {
         //dd($request);

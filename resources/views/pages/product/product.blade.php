@@ -14,7 +14,7 @@
                 <div class="row mb-2 " >
                     <div class="col-lg-8">
                         <div class="form-group">
-                            <input class="form-control" type="text" name='name' placeholder="Name">
+                            <input class="form-control" type="text" name='name' placeholder="Name" value="">
                         </div>
                     </div>
                 </div>
@@ -32,11 +32,23 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row mb-2 " >
-                    <div class="col-lg-8">
-                        <div class="form-group">
-                            <input class="form-control" type="text" name='status' placeholder="status">
+                    <div class="col-lg-1">
+                        <label class="form-check-label" >Status</label>
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="active">
+                            <label class="form-check-label" for="exampleRadios2">Actvie</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="inactive">
+                            <label class="form-check-label" for="exampleRadios2">Inactive</label>
                         </div>
+
                     </div>
                 </div>
                 <div class="row mb-2 " >
@@ -75,10 +87,6 @@
                                 @endif
                         </td>
                         <td>
-                            <!-- Default checked
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="changeStatus"  checked>
-                              </div>-->
 
                               <div class="col-lg-1">
                                 <a href="{{ route('product.editStatus',$task->id)  }}" > <button type="button" class="btn btn-primary">changeStatus</button></a>
@@ -86,7 +94,7 @@
                         </td>
                         <td >
                             <a href="{{ route('product.delete',$task->id) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-                            <a href="{{ route('product.editStatus',$task->id)  }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{{ route('product.edit',$task->id)  }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                         </td>
                       </tr>
                     @endforeach
