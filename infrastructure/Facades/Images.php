@@ -96,6 +96,7 @@ class Images
         }
 
         Image::destroy($id);
+
     }
 
     /**
@@ -170,6 +171,10 @@ class Images
 
         return $response;
     }
+
+
+
+
 
     /**
      * Crop image

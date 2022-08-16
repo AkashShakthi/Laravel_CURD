@@ -39,7 +39,9 @@ class ProductService
 
     public function delete($task_id)
     {
+
         $task = $this->task->find($task_id);
+        ImagesFacade::delete($task->image_id,[1,2,3,4,5]);
         $task->delete();
     }
 
@@ -67,7 +69,7 @@ class ProductService
 
     protected function edit(Product $task, $data)
     {
-    
+
         return array_merge($task->toArray(), $data);
     }
 
