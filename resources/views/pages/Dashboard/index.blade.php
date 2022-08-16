@@ -26,17 +26,7 @@
 
 
 
-
-
-
-
-
-
-
-
 @endsection
-
-
 @push('css')
 <style>
     .page-title{
