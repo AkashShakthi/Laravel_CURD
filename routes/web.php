@@ -24,6 +24,9 @@ Route::prefix('/product')->group(function(){
     Route::post('/store',[ProductController::class,'store'])->name('product.store');
     Route::get('/{task_id}/delete',[ProductController::class,'delete'])->name('product.delete');
     Route::get('/{task_id}/editStatus',[ProductController::class,'editStatus'])->name('product.editStatus');
+
+    Route::get('/edit',[ProductController::class,'edit'])->name('product.edit');
+    Route::post('/{task_id}/update',[ProductController::class,'update'])->name('product.update');
 });
 
 

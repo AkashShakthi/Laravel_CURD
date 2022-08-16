@@ -81,7 +81,7 @@
                             <a href="{{ route('product.editStatus',$task->id)  }}" class="btn btn-warning"><i class="fa-solid fa-check-circle"></i>Inactive</a>
                             @endif
 
-                            <a href="{{ route('product.delete',$task->id)  }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="javascript:void(0)" class="btn btn-info"><i class="fa-solid fa-pen-to-square" onclick="taskEditModel({{ $task->id }})"></i></a>
                         </td>
                       </tr>
                     @endforeach
@@ -89,16 +89,65 @@
               </table>
         </div>
    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="taskEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="taskEditLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="taskEditLabel">Edit Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="taskEditContent">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
 @endsection
 
 @push('css')
 <style>
     .page-title{
-        padding-top:5vh;
-        font-size: 5rem;
+        padding-top:2vh;
+        font-size: 4rem;
         color:#5471C6;
+        padding-bottom:2vh;
     }
 </style>
 
 @endpush
 
+
+@push('js')
+
+<script>
+
+    function taskEditModel(task_id){
+        var data = {
+            task_id: task_id,
+        };
+        $.ajax({
+            url: "{{ route('product.edit') }}",
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'GET',
+            dataType: '',
+            data: data,
+            success: function(response){
+                $('#taskEdit').modal('show');
+                $('#taskEditContent').html(response);
+            }
+        });
+    }
+
+</script>
+
+@endpush

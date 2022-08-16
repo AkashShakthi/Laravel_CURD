@@ -3,7 +3,7 @@
 @section('content')
    <div class="container">
         <div class="col-lg-12 text-center">
-            <h1 class="page-title">Dashboard</h1>
+            <h1 class="page-title">Active Products</h1>
         </div>
    </div>
 
@@ -40,10 +40,11 @@
 @push('css')
 <style>
     .page-title{
-        padding-top:10vh;
-        padding-bottom:5vh;
-        font-size: 5rem;
+        padding-top:2vh;
+        font-size: 4rem;
+        font-size: 4rem;
         color: #5471C6;
+        padding-bottom:2vh;
     }
     .home-card{
         max-height: 15rem;
